@@ -101,7 +101,7 @@ sub open_database() {
 		die "Database engine  $config->{database}->{engine} is currently not supported";
 	}
 	$dbh = DBI->connect_cached($dsn, $config->{database}->{user}, $config->{database}->{password});
-	return ($dbh,$db_engine);
+	return ($dbh,$db_engine); 
 }
 
 =head2 sql
