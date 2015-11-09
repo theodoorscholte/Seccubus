@@ -53,26 +53,26 @@ if (`hostname` =~ /^sbpd/) {
 	is($out,"","Pg DB dropped"); $tests++;
 	$out = `createdb seccubus`;
 	is($out,"","Pg DB created"); $tests++;
-	$out = `echo "alter database seccubus owner to root;" |  psql`;
-	is($out,"ALTER DATABASE\n","DB owned by root"); $tests++;
-	$out = `echo "grant seccubus to root;" |  psql`;
-	is($out,"GRANT ROLE\n","root member of seccubus"); $tests++;
+	$out = `echo "alter database seccubus owner to postgres;" |  psql`;
+	is($out,"ALTER DATABASE\n","DB owned by postgres"); $tests++;
+	$out = `echo "grant seccubus to postgres;" |  psql`;
+	is($out,"GRANT ROLE\n","postgres member of seccubus"); $tests++;
 
-	$out = `psql -U root seccubus < db/structure_v$version.psql 2>&1`;
+	$out = `psql -U postgres seccubus < db/structure_v$version.psql 2>&1`;
 	$out =~ s/(SET|GRANT|REVOKE|(CREATE|ALTER) (FUNCTION|TABLE|SEQUENCE|INDEX|TRIGGER))\n//g;
 	$out =~ s/ERROR:  language "plpgsql" already exists\n//g;
 	$out =~ s/ERROR:  must be owner of language plpgsql\n//g;
 	$out =~ s/WARNING:  no privileges could be revoked for "public"\n//g;
 	$out =~ s/WARNING:  no privileges were granted for "public"\n//g;
 	is($out,"","Pg DB structure created"); $tests++;
-	$out = `psql -U root seccubus < db/data_v$version.psql 2>&1`;
+	$out = `psql -U postgres seccubus < db/data_v$version.psql 2>&1`;
 	$out =~ s/(\-+|SET|(COPY)*\s+\d+|\s+setval\s*|\(\d+ row\))\n//g;
 	is($out,"\n","Pg DB content created"); $tests++;
 
 	my $mysql = DBI->connect_cached("DBI:mysql:database=seccubus","root","");
 	ok($mysql,"Got mysql DBI handle"); $tests++;
 
-	my $pg = DBI->connect_cached("DBI:Pg:dbname=seccubus","root","");
+	my $pg = DBI->connect_cached("DBI:Pg:dbname=seccubus","postgres","");
 	ok($pg,"Got postgress DBI handle"); $tests++;
 
 	# Lets get all tables
