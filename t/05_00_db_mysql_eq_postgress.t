@@ -62,7 +62,7 @@ if (`hostname` =~ /^sbpd/) {
 	is($out,"GRANT ROLE\n","postgres member of seccubus"); $tests++;
 
 	$out = `psql -U postgres seccubus < db/structure_v$version.psql 2>&1`;
-	$out =~ s/(SET|GRANT|REVOKE|(CREATE|ALTER) (FUNCTION|TABLE|SEQUENCE|INDEX|TRIGGER))\n//g;
+	$out =~ s/(SET|GRANT|REVOKE|(CREATE|ALTER) (FUNCTION|TABLE|SEQUENCE|INDEX|TRIGGER|LANGUAGE))\n//g;
 	$out =~ s/ERROR:  language "plpgsql" already exists\n//g;
 	$out =~ s/ERROR:  must be owner of language plpgsql\n//g;
 	$out =~ s/WARNING:  no privileges could be revoked for "public"\n//g;
