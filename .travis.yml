@@ -2,13 +2,16 @@ language: perl
 perl:
 - '5.20'
 - '5.10'
+addons:
+- postgresql: "9.4"
 services:
 - mysql
+- postgresql
 before_script:
 - mysql -e "create database seccubus_create"
 - mysql -e "create database seccubus_upgrade"
 - mysql -e "create database seccubus"
-- cpanm DBI DBD::mysql
+- cpanm DBI DBD::mysql DBD:Pg
 sudo: false
 notifications:
   slack:
