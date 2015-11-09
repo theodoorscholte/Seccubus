@@ -55,6 +55,9 @@ if (`hostname` =~ /^sbpd/) {
 	is($out,"","Pg DB created"); $tests++;
 	$out = `echo "alter database seccubus owner to postgres;" |  psql`;
 	is($out,"ALTER DATABASE\n","DB owned by postgres"); $tests++;
+	$out = `echo "create role seccubus;" |  psql`;
+	$out =~ s/CREATE ROLE\n//;
+	is($out,"","seccubus role created"); $tests++;
 	$out = `echo "grant seccubus to postgres;" |  psql`;
 	is($out,"GRANT ROLE\n","postgres member of seccubus"); $tests++;
 
