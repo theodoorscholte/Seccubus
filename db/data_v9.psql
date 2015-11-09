@@ -208,7 +208,7 @@ COPY checkpoints (id, workspace_id, label, tags, "timestamp") FROM stdin;
 --
 
 COPY config (name, value) FROM stdin;
-version	8
+version	9
 \.
 
 

@@ -155,7 +155,7 @@ ALTER SEQUENCE attachments_id_seq OWNED BY attachments.id;
 --
 
 CREATE TABLE checkpoints (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     workspace_id bigint NOT NULL,
     label character varying(45) NOT NULL,
     tags character varying(45),
@@ -203,7 +203,7 @@ ALTER TABLE public.config OWNER TO seccubus;
 --
 
 CREATE TABLE customsql (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying(255) NOT NULL,
     sql text NOT NULL
 );
@@ -237,7 +237,7 @@ ALTER SEQUENCE customsql_id_seq OWNED BY customsql.id;
 --
 
 CREATE TABLE events (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     name character varying(45)
 );
 
@@ -551,9 +551,9 @@ ALTER SEQUENCE issues_id_seq OWNED BY issues.id;
 --
 
 CREATE TABLE notifications (
-    id integer NOT NULL,
+    id bigint NOT NULL,
     scan_id bigint NOT NULL,
-    event_id integer NOT NULL,
+    event_id bigint NOT NULL,
     subject character varying(255) NOT NULL,
     recipients character varying(1024) NOT NULL,
     message text NOT NULL
@@ -912,6 +912,14 @@ ALTER TABLE ONLY checkpoints
 
 ALTER TABLE ONLY config
     ADD CONSTRAINT config_pkey PRIMARY KEY (name);
+
+--
+-- Name: customsql_pkey; Type: CONSTRAINT; Schema: public; Owner: seccubus; Tablespace: 
+--
+
+ALTER TABLE ONLY customsql
+    ADD CONSTRAINT customsql_pkey PRIMARY KEY (id);
+
 
 
 --
