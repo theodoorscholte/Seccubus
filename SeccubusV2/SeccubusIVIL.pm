@@ -134,21 +134,20 @@ sub load_ivil($;$$$$$$) {
 		my $count = @{$ivil->{findings}->{finding}};
 		print "There are $count findings\n" if $print;
 		foreach my $finding ( @{$ivil->{findings}->{finding}} ) {
-			$finding->{severity} = 99 unless defined $finding->{severity};
-			$finding->{severity} = 99 if $finding->{severity} eq "";
-			$finding->{severity} = 99 if $finding->{severity} eq "0";
+			$finding->{severity} = 0 unless defined $finding->{severity};
+			$finding->{severity} = 0 if $finding->{severity} eq "";
 			# TODO: Seccubus currently does not handle the 
 			# references as specified in the IVIL format
 			update_finding(
-				      	workspace_id	=> $workspace_id,
-					run_id		=> $run_id,
-					scan_id		=> $scan_id,
-					host		=> $finding->{ip},
-					port		=> $finding->{port},
-					plugin		=> $finding->{id},
-					finding		=> $finding->{finding_txt},
-					severity	=> $finding->{severity},
-				      );
+				workspace_id	=> $workspace_id,
+				run_id		=> $run_id,
+				scan_id		=> $scan_id,
+				host		=> $finding->{ip},
+				port		=> $finding->{port},
+				plugin		=> $finding->{id},
+				finding		=> $finding->{finding_txt},
+				severity	=> $finding->{severity},
+		    );
 			if ( $finding->{ip} =~ /^\d+\.\d+\.\d+\.\d+$/ ) {
 				update_hostname($workspace_id, $finding->{ip}, $finding->{hostname});
 			}
