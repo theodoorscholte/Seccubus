@@ -20,6 +20,11 @@ languages:
     include:
       - .*/jmvc/seccubus/.*\.js
       - .*/jmvc/widgets/.*\.js
+    exclude:
+      - .*/jmvc/documentjs/.*\.js
+      - .*/jmvc/funcunit/.*\.js
+      - .*/jmvc/jquery/.*\.js
+      - .*/jmvc/steal/.*\.js
 - script
 exclude:
 - .*/testdata/.*
