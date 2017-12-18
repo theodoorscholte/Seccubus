@@ -6,9 +6,12 @@ languages:
     include:
       - .*\.pl
       - .*\.pm
+      - bin\.*
       - .*/db/.*\.pl
       - .*/lib/.*\.pm
       - .*/scanners/.*scan
+    exclude:
+      - bin\.*\.sh
   test:
     include:
       - .*/t/.*\.t
