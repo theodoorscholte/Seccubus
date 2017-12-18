@@ -1,0 +1,20 @@
+component_depth: 1
+languages:
+- python
+- name perl
+  production:
+    include:
+      - .*\.pl
+      - .*\.pm
+      - .*/db/.*\.pl
+      - .*/lib/.*\.pm
+      - .*/scanners/.*scan
+  test:
+    include:
+      - .*/t/.*\.t
+- javascript
+- script
+exclude:
+- .*/jmvc/.*
+- .*/testdata/.*
+- .*/tmp/.*
