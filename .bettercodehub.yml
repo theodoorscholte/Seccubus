@@ -15,7 +15,11 @@ languages:
   test:
     include:
       - .*/t/.*\.t
-- javascript
+- name: javascript
+  production:
+    include:
+      - .*/jmvc/seccubus/.*\.js
+      - .*/jmvc/widgets/.*\.js
 - script
 exclude:
 - .*/jmvc/.*
