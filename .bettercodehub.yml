@@ -1,7 +1,7 @@
 component_depth: 1
 languages:
 - python
-- name perl
+- name: perl
   production:
     include:
       - .*\.pl
