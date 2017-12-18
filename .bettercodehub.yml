@@ -25,6 +25,9 @@ languages:
       - .*/jmvc/funcunit/.*\.js
       - .*/jmvc/jquery/.*\.js
       - .*/jmvc/steal/.*\.js
+  test:
+    exclude:
+      - .*/jmvc/.*\.js
 - script
 exclude:
 - .*/testdata/.*
